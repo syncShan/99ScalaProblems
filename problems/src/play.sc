@@ -1,0 +1,13 @@
+
+val a = new simpleBunch()
+val y = List(1, 1, 2, 3, 5, 8)
+val z = List(1,2,3,2,1)
+a.last(y)
+a.lastRecursive(y)
+a.penultimate(y)
+a.nth(2, y)
+a.length(y)
+a.reverse(y)
+a.reverse2(y)
+a.isPalindrome(y)
+a.isPalindrome(z)
