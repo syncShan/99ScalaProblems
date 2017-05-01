@@ -97,7 +97,82 @@ class simpleBunch {
   }
 
   //Q6 ans
-  def isPalindrome[A](ls: List[A]): Boolean = ls == ls.reverse
+  def isPalindromeS[A](ls: List[A]): Boolean = ls == ls.reverse
 
+  //Q7
+  def flatten[A](ls :List[A]) : List[A] =  {
+    def flatternR(result:List[A],ls:List[A]) : List[A] = ls match {
+      case Nil => result
+      case x :: tail if(x.isInstanceOf[List[Int]])=>  flatternR(result:::flatten(x.asInstanceOf[List[A]]), tail)
+      case x :: tail if(x.isInstanceOf[Int]) => flatternR(result:::List[A](x.asInstanceOf[A]), tail)
+    }
+    return  flatternR(List[A](),ls)
+  }
+  //Q7 ans
+  def flattenA(ls: List[Any]): List[Any] = ls flatMap {
+    case ms: List[_] => flatten(ms)
+    case e => List(e)
+  }
+
+  //Q8
+  def compressWrong[A](A : List[A]) = A.toSet.toList
+
+  def compress[A](ls :List[A]) = {
+    def compressRec(cur:Any,ls: List[A],res : List[Any]): List[Any] = (cur,ls) match {
+      case (x,List()) => res
+      case (Nil,x::tail) => compressRec(x,tail,res:::List(x))
+      case (x,y::tail) if(x==y) => compressRec(x,tail,res)
+      case(x,y::tail) if(x!=y) => compressRec(y,tail,res:::List(y))
+    }
+    compressRec(Nil,ls,List())
+  }
+  //Q8 Ans
+  def compressRecursive[A](ls: List[A]): List[A] = ls match {
+    case Nil       => Nil
+    case h :: tail => h :: compressRecursive(tail.dropWhile(_ == h))
+  }
+
+  // Tail recursive.
+  def compressTailRecursive[A](ls: List[A]): List[A] = {
+    def compressR(result: List[A], curList: List[A]): List[A] = curList match {
+      case h :: tail => compressR(h :: result, tail.dropWhile(_ == h))
+      case Nil       => result.reverse
+    }
+    compressR(Nil, ls)
+  }
+
+  // Functional.
+  def compressFunctional[A](ls: List[A]): List[A] =
+    ls.foldRight(List[A]()) { (h, r) =>
+      if (r.isEmpty || r.head != h) h :: r
+      else r
+    }
+
+  //Q09
+  def pack[A](ls : List[A]) = {
+    def packRec(cur:Any,ls: List[A],res : List[Any],temp:List[Any]): List[Any] = (cur,ls) match {
+      case (x,List()) => res
+      case (Nil,x::tail) => packRec(x,tail,res,List(x))
+      case (x,y::tail) if(x==y) => packRec(x,tail,res,temp:::List(x))
+      case(x,y::tail) if(x!=y) => packRec(y,tail,res:::List(temp),List(y))
+    }
+    packRec(Nil,ls,List(),List())
+  }
+
+  //Q09 ans
+  def packAns[A](ls: List[A]): List[List[A]] = {
+    if (ls.isEmpty) List(List())
+    else {
+      val (packed, next) = ls span { _ == ls.head }
+      if (next == Nil) List(packed)
+      else packed :: packAns(next)
+    }
+  }
+
+  //Q10
+  def encode[A](ls :List[A]) : List[(Int,A)] = {
+    val res:List[List[A]] = packAns(ls)
+    res.map( x => (x.length,x.head))
+  }
 
 }
