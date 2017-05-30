@@ -175,4 +175,20 @@ class simpleBunch {
     res.map( x => (x.length,x.head))
   }
 
+  //Q11
+  def encodeModified[A](ls : List[A]) : List[Any] = {
+    packAns(ls) map ( x => if(x.length>1) (x.length,x.head) else x.head)
+  }
+
+  //Q11 ans
+  def encodeModified2[A](ls: List[A]): List[Either[A, (Int, A)]] =
+    encode(ls) map { t => if (t._1 == 1) Left(t._2) else Right(t) }
+
+  //Q12
+  def decode(ls:List[(Int,Symbol)]) : List[Symbol] = ls map {case (x:Int,y:Symbol) => List.fill(x)(y)} flatten
+  //Q12 ans
+  def decodeAns[A](ls: List[(Int, A)]): List[A] = ls flatMap { e => List.fill(e._1)(e._2) }
+
+  //Q13 skip
+  //Q14
 }

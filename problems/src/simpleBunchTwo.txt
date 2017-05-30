@@ -1,0 +1,49 @@
+P14 (*) Duplicate the elements of a list.
+Example:
+scala> duplicate(List('a, 'b, 'c, 'c, 'd))
+res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+
+P15 (**) Duplicate the elements of a list a given number of times.
+Example:
+scala> duplicateN(3, List('a, 'b, 'c, 'c, 'd))
+res0: List[Symbol] = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
+
+P16 (**) Drop every Nth element from a list.
+Example:
+scala> drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+res0: List[Symbol] = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+
+P17 (*) Split a list into two parts.
+The length of the first part is given. Use a Tuple for your result.
+Example:
+scala> split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+res0: (List[Symbol], List[Symbol]) = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+
+P18 (**) Extract a slice from a list.
+Given two indices, I and K, the slice is the list containing the elements from and including the Ith element up to but not including the Kth element of the original list. Start counting the elements with 0.
+Example:
+scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+res0: List[Symbol] = List('d, 'e, 'f, 'g)
+
+P19 (**) Rotate a list N places to the left.
+Examples:
+scala> rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+res0: List[Symbol] = List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+scala> rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+res1: List[Symbol] = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
+
+P20 (*) Remove the Kth element from a list.
+Return the list and the removed element in a Tuple. Elements are numbered from 0.
+Example:
+scala> removeAt(1, List('a, 'b, 'c, 'd))
+res0: (List[Symbol], Symbol) = (List('a, 'c, 'd),'b)
+
+P21 (*) Insert an element at a given position into a list.
+Example:
+scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
+res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
+
+P22 (*) Create a list containing all integers within a given range.
+Example:
+scala> range(4, 9)
+res0: List[Int] = List(4, 5, 6, 7, 8, 9)
